@@ -29,6 +29,10 @@ public class Algebra {
 			x1++;
 			x2--;
 		}
+		while (x2 < 0) {
+			x1--;
+			x2++;
+		}
 		return x1;
 	}
 
@@ -37,6 +41,10 @@ public class Algebra {
 		while (x2 > 0){
 			x1--;
 			x2--;
+		}
+		while (x2 < 0) {
+			x1--;
+			x2++;
 		}
 		return x1;
 	}
@@ -48,6 +56,10 @@ public class Algebra {
 			sum = plus(sum,x1);
 			x2--;
 		}
+		while (x2 < 0) {
+			sum = minus(sum, x1);
+			x2++;
+		}
 		return sum;
 	}
 
@@ -57,23 +69,36 @@ public class Algebra {
 		if (n == 0){
 			return 1;
 		}
-		else {
+		if (x < 0) {
 			while (n > 0) {
 				sum = times(sum,x);
 				n--;
 			}
 			return sum;
-		}	
+		}
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		int count = 0;
+		int x11 = 0;
+		int x22 = 0;
+		if (x1 < 0) {
+			x11 = times(x1, -1);
+		}
+		if (x2 < 0) {
+			x22 = times(x2, -1);
+		}
 		while (x1 >= x2) {
 			x1 = minus(x1,x2);
 			count++;
 		}
-		return count;
+		if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+        return times(count, -1);
+    	}
+		else{
+			return count;
+		}
 	}
 
 	// Returns x1 % x2
@@ -93,7 +118,6 @@ public class Algebra {
 			}
 			else 
 				check++;
-
 		}
 		return 0;
 	}	  	  
