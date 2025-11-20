@@ -76,6 +76,9 @@ public class Algebra {
 			}
 			return sum;
 		}
+		else {
+			return 0;
+		}
 	}
 
 	// Returns the integer part of x1 / x2 
