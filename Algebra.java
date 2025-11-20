@@ -84,16 +84,17 @@ public class Algebra {
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		int count = 0;
-		if (x1 < 0) {
-			x1 = times(x1, -1);
-		}
-		if (x2 < 0) {
-			x2 = times(x2, -1);
-		}
-		while (x1 >= x2) {
-			x1 = minus(x1,x2);
-			count++;
-		}
+		int absX1 = x1;
+		int absX2 = x2;
+		int sum = 0;
+		
+		if (x1 < 0) absX1 = -x1; // או times(x1, -1)
+		if (x2 < 0) absX2 = -x2;
+		
+		while (sum + absX2 <= absX1) {
+        sum = sum + absX2; // אפשר להשתמש ב-plus
+        count++;
+    	}
 		if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
         return times(count, -1);
     	}
@@ -112,14 +113,10 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		int check = 1;
-		while (check > 0) {
-			if ((pow(check, 2) <= x) && (x < pow(check +1, 2))) {
-				return check;
-			}
-			else 
-				check++;
-		}
-		return 0;
+		int result = 0;
+		while (times(result + 1, result + 1) <= x) {
+        result++;
+   		 }	
+		return result;
 	}	  	  
 }
