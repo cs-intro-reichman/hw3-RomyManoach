@@ -43,7 +43,7 @@ public class Algebra {
 			x2--;
 		}
 		while (x2 < 0) {
-			x1--;
+			x1++;
 			x2++;
 		}
 		return x1;
@@ -69,17 +69,14 @@ public class Algebra {
 		if (n == 0){
 			return 1;
 		}
-		if (x < 0) {
-			while (n > 0) {
-				sum = times(sum,x);
-				n--;
-			}
-			return sum;
+		while (n > 0) {
+        sum = times(sum, x);
+        n--;
 		}
-		else {
-			return 0;
+		return sum;
+
 		}
-	}
+	
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
@@ -88,15 +85,15 @@ public class Algebra {
 		int absX2 = x2;
 		int sum = 0;
 		
-		if (x1 < 0) absX1 = -x1; // או times(x1, -1)
-		if (x2 < 0) absX2 = -x2;
+		if (x1 < 0) absX1 = minus(0, x1); // או times(x1, -1)
+		if (x2 < 0) absX2 = minus(0, x2);
 		
 		while (sum + absX2 <= absX1) {
         sum = sum + absX2; // אפשר להשתמש ב-plus
         count++;
     	}
 		if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
-        return times(count, -1);
+        return times(0, count);
     	}
 		else{
 			return count;
